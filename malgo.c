@@ -44,3 +44,28 @@ void matrix_col
         }
     }
 }
+
+void block
+(size_t n, double A[n][n], double B[n][n], double C[n][n])
+{
+    int I, J, K;
+    const int N_BLK = n / BLK_SIZE;
+    for (I = 0; I < N_BLK; I++)
+        for (K = 0; K < N_BLK; K++)
+            for (J = 0; J < N_BLK; J++) {
+                int i, j, k;
+                double temp[BLK_SIZE], f;
+                for (j = 0; j < BLK_SIZE; j++) {
+                    for (k = 0; k < BLK_SIZE; k++)
+                        temp[k] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
+
+                    for (i = 0; i < BLK_SIZE; i++) {
+                        f = 0.0;
+                        for (k = 0; k < BLK_SIZE; k++)
+                            f += A[i + I * BLK_SIZE][k + K * BLK_SIZE] * temp[k];
+                        C[i + I * BLK_SIZE][j + J * BLK_SIZE] += f;
+                    }
+                }
+            }
+}
+

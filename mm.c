@@ -11,8 +11,8 @@ double A[SIZE][SIZE];
 double B[SIZE][SIZE];
 double C[SIZE][SIZE];
 
-int
-main()
+void
+matrix_init()
 {
     int i, j;
 
@@ -22,30 +22,31 @@ main()
     for (i = 0; i < SIZE; i++)
         for (j = 0; j < SIZE; j++)
             B[i][j] = INIT_VAL;
+}
 
+typedef void (*malgo)(size_t n, double A[n][n], double B[n][n], double C[n][n]);
+
+void 
+test_algo(malgo algo, const char *algo_name)
+{
     clock_t start, end;
-
+    float seconds;
     start = clock();
-    loop_ijk(SIZE, A, B, C);
+    algo(SIZE, A, B, C);
     end = clock();
-    float seconds_loop_ijk = (float)(end - start) / CLOCKS_PER_SEC;
+    seconds = (float)(end - start) / CLOCKS_PER_SEC;
+    printf("%s: %.2lf\n", algo_name, seconds);
+}
 
-    start = clock();
-    loop_reorder(SIZE, A, B, C);
-    end = clock();
-    float seconds_loop_reorder = (float)(end - start) / CLOCKS_PER_SEC;
-
-    start = clock();
-    matrix_col(SIZE, A, B, C);
-    end = clock();
-    float seconds_matrix_col = (float)(end - start) / CLOCKS_PER_SEC;
-
-    printf("%f\n", C[100][100]);
+int
+main()
+{
+    matrix_init();
 
     printf("------------------------------\n");
-    printf("ijk: %.2lf\n", seconds_loop_ijk);
-    printf("reordering: %.2lf\n", seconds_loop_reorder);
-    printf("matrix col: %.2lf\n", seconds_matrix_col);
-    
+    test_algo(loop_ijk, "loop_ijk");
+    test_algo(loop_reorder, "loop_reorder");
+    test_algo(matrix_col, "matrix_col");
+
     exit(EXIT_SUCCESS);
 }

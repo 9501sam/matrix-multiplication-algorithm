@@ -43,3 +43,7 @@ matrix_col: 31.45 sec
 block: 50.21 sec
 block_copy: 33.24 sec
 ```
+
+## Todo List
+- [ ] improve block algorithm
+- [ ] find better submatrix size for every machine

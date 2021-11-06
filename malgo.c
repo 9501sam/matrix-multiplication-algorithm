@@ -1,6 +1,6 @@
 #include "malgo.h"
 
-int BLK_SIZE = 300;
+int BLK_SIZE = 375;
 
 void loop_ijk
 (int n, double A[n][n], double B[n][n], double C[n][n])

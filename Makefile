@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Og -g
+CFLAGS = -Wall -O0
 
 mm: mm.o malgo.o
 	$(CC) $(CFLAGS) -o mm mm.o malgo.o
@@ -9,9 +9,6 @@ malgo.o: malgo.c
 
 mm.o: mm.c malgo.h
 	$(CC) $(CFLAGS) -c mm.c
-
-100:
-	$(CC) $(CFLAGS) -c mm.c -DBLK_SIZE=100
 
 run: mm
 	./mm

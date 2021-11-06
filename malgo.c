@@ -1,7 +1,9 @@
 #include "malgo.h"
 
+int BLK_SIZE = 300;
+
 void loop_ijk
-(size_t n, double A[n][n], double B[n][n], double C[n][n])
+(int n, double A[n][n], double B[n][n], double C[n][n])
 {
     double f;
     int i, j, k;
@@ -15,7 +17,7 @@ void loop_ijk
 }
 
 void loop_reorder
-(size_t n, double A[n][n], double B[n][n], double C[n][n])
+(int n, double A[n][n], double B[n][n], double C[n][n])
 {
     double f;
     int i, j, k;
@@ -28,7 +30,7 @@ void loop_reorder
 }
 
 void matrix_col
-(size_t n, double A[n][n], double B[n][n], double C[n][n])
+(int n, double A[n][n], double B[n][n], double C[n][n])
 {
     int i, j, k;
     double temp[n], f;
@@ -64,7 +66,7 @@ void matrix_col
  **********************************************************************************/
 
 void block
-(size_t n, double A[n][n], double B[n][n], double C[n][n])
+(int n, double A[n][n], double B[n][n], double C[n][n])
 {
     int I, J, K, i, j, k;
     int BLK_N = n / BLK_SIZE;
@@ -78,7 +80,6 @@ void block
                 for (j = 0; j < BLK_SIZE; j++) {
                     for (k = 0; k < BLK_SIZE; k++)
                         temp[k] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
-
                     for (i = 0; i < BLK_SIZE; i++) {
                         f = 0.0;
                         for (k = 0; k < BLK_SIZE; k++)
@@ -90,29 +91,29 @@ void block
 }
 
 void block_copy
-(size_t n, double A[n][n], double B[n][n], double C[n][n])
+(int n, double A[n][n], double B[n][n], double C[n][n])
 {
     int I, J, K, i, j, k;
     int BLK_N = n / BLK_SIZE;
     double temp[BLK_SIZE], f;
-    double tmpA[BLK_SIZE][BLK_SIZE], tmpB[BLK_SIZE][BLK_SIZE]; // A[I][K], B[K][J]
+    double tmpA[BLK_SIZE][BLK_SIZE], tmpB[BLK_SIZE][BLK_SIZE];
 
     for (I = 0; I < BLK_N; I++)
         for (K = 0; K < BLK_N; K++)
             for (J = 0; J < BLK_N; J++) {
 
-                for (i = 0; i < BLK_SIZE; i++) // copy block A(I, K) to tmpA[][]
+                // copy block A(I, K) and B(K, J) into tmpA and tmpB
+                for (i = 0; i < BLK_SIZE; i++)
                     for (k = 0; k < BLK_SIZE; k++)
                         tmpA[i][k] = A[i + I * BLK_SIZE][k + K * BLK_SIZE];
-
-                for (k = 0; k < BLK_SIZE; k++) // copy block B(K, J) to tmpB[][]
+                for (k = 0; k < BLK_SIZE; k++)
                     for (j = 0; j < BLK_SIZE; j++)
                         tmpB[k][j] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
                         
+                // C(I, J) += A(I, K) X B(K, J)
                 for (j = 0; j < BLK_SIZE; j++) {
                     for (k = 0; k < BLK_SIZE; k++)
                         temp[k] = tmpB[k][j];
-
                     for (i = 0; i < BLK_SIZE; i++) {
                         f = 0.0;
                         for (k = 0; k < BLK_SIZE; k++)

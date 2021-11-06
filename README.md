@@ -18,7 +18,7 @@ make run
 ```
 
 ## Result
-### Aspire A315-51 V1.08:
+### Acer Aspire A315-51 V1.08 (2018 laptop)
 ```sh
 loop_ijk: 18.69 sec
 loop_reorder: 12.26 sec
@@ -27,3 +27,20 @@ block: 11.88 sec
 block_copy: 11.66 sec
 ```
 
+### Asus Eee PC 1018P (very old laptop)
+```sh
+loop_ijk: 259.06 sec
+loop_reorder: 195.04 sec
+matrix_col: 111.18 sec
+block: 149.44 sec
+block_copy: 113.29 sec
+```
+
+### Raspberry Pi 4 Model B with 4G RAM
+```sh
+loop_ijk: 93.10 sec
+loop_reorder: 42.63 sec
+matrix_col: 31.45 sec
+block: 50.21 sec
+block_copy: 33.24 sec
+```

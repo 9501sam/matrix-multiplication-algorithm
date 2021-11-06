@@ -43,8 +43,8 @@ test_algo(malgo algo, const char *algo_name)
     end = clock();
 
     seconds = (float)(end - start) / CLOCKS_PER_SEC;
-    // printf("%s: %.2lf sec\n", algo_name, seconds);
-    printf("%.2lf,", seconds);
+    printf("%s: %.2lf sec\n", algo_name, seconds);
+    // printf("%.2lf,", seconds);
 }
 
 int
@@ -61,6 +61,7 @@ main()
         test_algo(block, "block");
         test_algo(block_copy, "block_copy");
     }
+
     exit(EXIT_SUCCESS);
 }
 

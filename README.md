@@ -1,8 +1,7 @@
 # Matrix Multiplication algorithm
-This repo impliments five matrix multiplication algorithms mentioned in  
-[Parallelizing a Level 3 BLAS Library for LAN-Connected Workstations](https://ir.nctu.edu.tw/handle/11536/149370),  
+This repo is a implimention of five matrix multiplication algorithms mentioned in  
+*[Parallelizing a Level 3 BLAS Library for LAN-Connected Workstations](https://ir.nctu.edu.tw/handle/11536/149370)*,  
 including:
-
 1. Loop-i-j-k
 2. Loop-reordering
 3. Matrix-column

@@ -1,6 +1,6 @@
 #include "malgo.h"
 
-int BLK_SIZE = 300;
+int BLK_SIZE = 375;
 
 void loop_ijk
 (int n, double A[n][n], double B[n][n], double C[n][n])
@@ -105,19 +105,19 @@ void block_copy
                 // copy block A(I, K) and B(K, J) into tmpA and tmpB
                 for (i = 0; i < BLK_SIZE; i++)
                     for (k = 0; k < BLK_SIZE; k++)
-                        tmpA[i][k] = A[i + I * BLK_SIZE][k + K * BLK_SIZE];
+                        tmpA[i * BLK_SIZE + k] = A[i + I * BLK_SIZE][k + K * BLK_SIZE];
                 for (k = 0; k < BLK_SIZE; k++)
                     for (j = 0; j < BLK_SIZE; j++)
-                        tmpB[k][j] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
+                        tmpB[k * BLK_SIZE + j] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
                         
                 // C(I, J) += A(I, K) X B(K, J)
                 for (j = 0; j < BLK_SIZE; j++) {
                     for (k = 0; k < BLK_SIZE; k++)
-                        temp[k] = tmpB[k][j];
+                        temp[k] = tmpB[k * BLK_SIZE + j];
                     for (i = 0; i < BLK_SIZE; i++) {
                         f = 0.0;
                         for (k = 0; k < BLK_SIZE; k++)
-                            f += tmpA[i][k] * temp[k];
+                            f += tmpA[i * BLK_SIZE + k] * temp[k];
                         C[i + I * BLK_SIZE][j + J * BLK_SIZE] += f;
                     }
                 }

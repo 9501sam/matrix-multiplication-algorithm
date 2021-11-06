@@ -43,7 +43,8 @@ test_algo(malgo algo, const char *algo_name)
     end = clock();
 
     seconds = (float)(end - start) / CLOCKS_PER_SEC;
-    printf("%s: %.2lf sec\n", algo_name, seconds);
+    // printf("%s: %.2lf sec\n", algo_name, seconds);
+    printf("%.2lf,", seconds);
 }
 
 int
@@ -51,12 +52,15 @@ main()
 {
     printf("------------------------------\n");
 
-    test_algo(loop_ijk, "loop_ijk");
-    test_algo(loop_reorder, "loop_reorder");
-    test_algo(matrix_col, "matrix_col");
-    test_algo(block, "block");
-    test_algo(block_copy, "block_copy");
+    int a[] = {2, 3, 4, 5, 6, 10, 12, 15, 20, 25, 30, 50, 60, 
+        75, 100, 125, 150, 250, 300, 375, 500, 750, 1500};
 
+    for (int i = 0; i < 23; i++) {
+        BLK_SIZE = a[i];
+        printf("\n%d,", BLK_SIZE);
+        test_algo(block, "block");
+        test_algo(block_copy, "block_copy");
+    }
     exit(EXIT_SUCCESS);
 }
 

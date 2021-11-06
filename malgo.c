@@ -67,8 +67,8 @@ void block
 (size_t n, double A[n][n], double B[n][n], double C[n][n])
 {
     int I, J, K, i, j, k;
+    int BLK_N = n / BLK_SIZE;
     double temp[BLK_SIZE], f;
-    const int BLK_N = n / BLK_SIZE;
 
     for (I = 0; I < BLK_N; I++)
         for (K = 0; K < BLK_N; K++)
@@ -93,9 +93,9 @@ void block_copy
 (size_t n, double A[n][n], double B[n][n], double C[n][n])
 {
     int I, J, K, i, j, k;
+    int BLK_N = n / BLK_SIZE;
     double temp[BLK_SIZE], f;
     double tmpA[BLK_SIZE][BLK_SIZE], tmpB[BLK_SIZE][BLK_SIZE]; // A[I][K], B[K][J]
-    const int BLK_N = n / BLK_SIZE;
 
     for (I = 0; I < BLK_N; I++)
         for (K = 0; K < BLK_N; K++)

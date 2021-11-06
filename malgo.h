@@ -1,7 +1,7 @@
 #include <stddef.h>
 
 #ifndef BLK_SIZE
-#define BLK_SIZE 200
+#define BLK_SIZE 300
 #endif
 
 void loop_ijk       (size_t n, double A[n][n], double B[n][n], double C[n][n]);

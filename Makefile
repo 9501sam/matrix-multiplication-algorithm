@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -O3 -g
+CFLAGS = -Wall -Og -g
 
 mm: mm.o malgo.o
 	$(CC) $(CFLAGS) -o mm mm.o malgo.o

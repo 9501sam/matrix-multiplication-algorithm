@@ -62,10 +62,10 @@ main()
     // printf("%f\n", C[112][434]);
 
     test_algo(block, "block");
-    printf("%f\n", C[333][444]);
+    printf("%f\n", C[0][0]);
 
     test_algo(block_copy, "block_copy");
-    printf("%f\n", C[112][434]);
+    printf("%f\n", C[0][0]);
 
     exit(EXIT_SUCCESS);
 }

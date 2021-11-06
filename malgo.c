@@ -69,22 +69,21 @@ void block
 (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     int I, J, K, i, j, k;
-    int BLK_N = n / BLK_SIZE;
     double temp[BLK_SIZE], f;
 
-    for (I = 0; I < BLK_N; I++)
-        for (K = 0; K < BLK_N; K++)
-            for (J = 0; J < BLK_N; J++) {
+    for (I = 0; I < n; I += BLK_SIZE)
+        for (K = 0; K < n; K += BLK_SIZE)
+            for (J = 0; J < n; J += BLK_SIZE) {
 
                 // C(I, J) += A(I, K) X B(K, J)
                 for (j = 0; j < BLK_SIZE; j++) {
                     for (k = 0; k < BLK_SIZE; k++)
-                        temp[k] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
+                        temp[k] = B[k + K][j + J];
                     for (i = 0; i < BLK_SIZE; i++) {
                         f = 0.0;
                         for (k = 0; k < BLK_SIZE; k++)
-                            f += A[i + I * BLK_SIZE][k + K * BLK_SIZE] * temp[k];
-                        C[i + I * BLK_SIZE][j + J * BLK_SIZE] += f;
+                            f += A[i + I][k + K] * temp[k];
+                        C[i + I][j + J] += f;
                     }
                 }
             }
@@ -94,21 +93,20 @@ void block_copy
 (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     int I, J, K, i, j, k;
-    int BLK_N = n / BLK_SIZE;
     double temp[BLK_SIZE], f;
     double tmpA[BLK_SIZE][BLK_SIZE], tmpB[BLK_SIZE][BLK_SIZE];
 
-    for (I = 0; I < BLK_N; I++)
-        for (K = 0; K < BLK_N; K++)
-            for (J = 0; J < BLK_N; J++) {
+    for (I = 0; I < n; I += BLK_SIZE)
+        for (K = 0; K < n; K += BLK_SIZE)
+            for (J = 0; J < n; J += BLK_SIZE) {
 
                 // copy block A(I, K) and B(K, J) into tmpA and tmpB
                 for (i = 0; i < BLK_SIZE; i++)
                     for (k = 0; k < BLK_SIZE; k++)
-                        tmpA[i][k] = A[i + I * BLK_SIZE][k + K * BLK_SIZE];
+                        tmpA[i][k] = A[i + I][k + K];
                 for (k = 0; k < BLK_SIZE; k++)
                     for (j = 0; j < BLK_SIZE; j++)
-                        tmpB[k][j] = B[k + K * BLK_SIZE][j + J * BLK_SIZE];
+                        tmpB[k][j] = B[k + K][j + J];
                         
                 // C(I, J) += A(I, K) X B(K, J)
                 for (j = 0; j < BLK_SIZE; j++) {
@@ -118,7 +116,7 @@ void block_copy
                         f = 0.0;
                         for (k = 0; k < BLK_SIZE; k++)
                             f += tmpA[i][k] * temp[k];
-                        C[i + I * BLK_SIZE][j + J * BLK_SIZE] += f;
+                        C[i + I][j + J] += f;
                     }
                 }
             }

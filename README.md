@@ -1,7 +1,6 @@
 # Matrix Multiplication algorithm
 This repo is an implementation of five matrix multiplication algorithms mentioned in  
-*[Parallelizing a Level 3 BLAS Library for LAN-Connected Workstations](https://ir.nctu.edu.tw/handle/11536/149370)*,  
-including:
+*[Parallelizing a Level 3 BLAS Library for LAN-Connected Workstations](https://ir.nctu.edu.tw/handle/11536/149370)*, including:
 1. Loop-i-j-k
 2. Loop-reordering
 3. Matrix-column
@@ -10,10 +9,24 @@ including:
 
 ## Usage
 
+### clone this repo and compile
 ```sh
 git clone https://github.com/9501sam/matrix-multiplication-algorithm
 cd matrix-multiplication-algorithm
-make run
+make
+```
+
+### run the program
+```
+./mm -1         # run Loop-i-j-k
+./mm -2         # run Loop-reordering
+./mm -3         # run Matrix-column
+./mm -4         # run Block algorithm without  submatrices copy
+./mm -5         # run Block algorithm with submatrices copy
+./mm -2 -3 -5   # run algo 2, 3, 5
+./mm -a         # run all algorithms above
+make run        # compile the code and run all algorithms above
+make run-perf   # compile the code and measure performance using perf
 ```
 
 ## Result

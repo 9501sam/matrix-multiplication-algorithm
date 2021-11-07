@@ -32,11 +32,11 @@ make run-perf   # compile the code and measure performance using perf
 ## Result
 ### Acer Aspire A315-51 V1.08 (2018 laptop)
 ```sh
-loop_ijk: 11.70 sec
-loop_reorder: 9.59 sec
-matrix_col: 5.51 sec
-block: 6.58 sec
-block_copy: 5.62 sec
+loop_ijk: 6.85 sec
+loop_reorder: 2.73 sec
+matrix_col: 5.20 sec
+block: 2.90 sec
+block_copy: 2.87 sec
 ```
 ```
 ------------------------------

@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <time.h>
 #include <assert.h>
+#include <getopt.h>
+#include <stdbool.h>
 #include "malgo.h"
 
 #define SIZE 1500
@@ -49,15 +50,48 @@ test_algo(malgo algo, const char *algo_name)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
-    printf("------------------------------\n");
+    int opt;
+    bool algo_flag[6] = {false, false, false, false, false, false};
+    while ((opt = getopt(argc, argv, ":12345a")) != -1) {
+        switch (opt) {
+        case '1':
+            algo_flag[1] = true;
+            break;
+        case '2':
+            algo_flag[2] = true;
+            break;
+        case '3':
+            algo_flag[3] = true;
+            break;
+        case '4':
+            algo_flag[4] = true;
+            break;
+        case '5':
+            algo_flag[5] = true;
+            break;
+        case 'a':
+            algo_flag[1] = true;
+            algo_flag[2] = true;
+            algo_flag[3] = true;
+            algo_flag[4] = true;
+            algo_flag[5] = true;
+            break;
+        }
+    }
 
-    test_algo(loop_ijk, "loop_ijk");
-    test_algo(loop_reorder, "loop_reorder");
-    test_algo(matrix_col, "matrix_col");
-    test_algo(block, "block");
-    test_algo(block_copy, "block_copy");
+    printf("------------------------------\n");
+    if (algo_flag[1])
+        test_algo(loop_ijk, "loop_ijk");
+    if (algo_flag[2])
+        test_algo(loop_reorder, "loop_reorder");
+    if (algo_flag[3])
+        test_algo(matrix_col, "matrix_col");
+    if (algo_flag[4])
+        test_algo(block, "block");
+    if (algo_flag[5])
+        test_algo(block_copy, "block_copy");
 
     exit(EXIT_SUCCESS);
 }

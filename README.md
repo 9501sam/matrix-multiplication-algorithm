@@ -1,5 +1,5 @@
 # Matrix Multiplication algorithm
-This repo is a implementation of five matrix multiplication algorithms mentioned in  
+This repo is an implementation of five matrix multiplication algorithms mentioned in  
 *[Parallelizing a Level 3 BLAS Library for LAN-Connected Workstations](https://ir.nctu.edu.tw/handle/11536/149370)*,  
 including:
 1. Loop-i-j-k

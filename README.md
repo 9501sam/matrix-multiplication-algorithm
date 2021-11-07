@@ -19,11 +19,11 @@ make run
 ## Result
 ### Acer Aspire A315-51 V1.08 (2018 laptop)
 ```sh
-loop_ijk: 18.78 sec
-loop_reorder: 12.27 sec
-matrix_col: 11.50 sec
-block: 11.67 sec
-block_copy: 11.58 sec
+loop_ijk: 11.70 sec
+loop_reorder: 9.59 sec
+matrix_col: 5.51 sec
+block: 6.58 sec
+block_copy: 5.62 sec
 ```
 
 ### Asus Eee PC 1018P (very old laptop)

@@ -41,8 +41,10 @@ test_algo(malgo algo, const char *algo_name)
     start = clock();
     algo(SIZE, A, B, C);
     end = clock();
-
     seconds = (float)(end - start) / CLOCKS_PER_SEC;
+
+    assert(1814.00 < C[123][456] && C[123][456] < 1816.00);
+
     printf("%s: %.2lf sec\n", algo_name, seconds);
 }
 

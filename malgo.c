@@ -1,6 +1,6 @@
 #include "malgo.h"
 
-int BLK_SIZE = 375;
+int BLK_SIZE = 300;
 
 void loop_ijk
 (int n, double A[n][n], double B[n][n], double C[n][n])
@@ -72,6 +72,7 @@ void block
     register int I, J, K, i, j, k;
     register int blk_size = BLK_SIZE;
     register double f;
+    register double *ptr_A, *ptr_B;
     double temp[blk_size];
 
     for (I = 0; I < n; I += blk_size)
@@ -80,12 +81,18 @@ void block
 
                 // C(I, J) += A(I, K) X B(K, J)
                 for (j = 0; j < blk_size; j++) {
-                    for (k = 0; k < blk_size; k++)
-                        temp[k] = B[k + K][j + J];
+                    ptr_B = &B[K][j + J];
+                    for (k = 0; k < blk_size; k++) {
+                        temp[k] = *ptr_B;
+                        ptr_B += n;
+                    }
+
                     for (i = 0; i < blk_size; i++) {
                         f = 0.0;
+
+                        ptr_A = &A[i + I][K];
                         for (k = 0; k < blk_size; k++)
-                            f += A[i + I][k + K] * temp[k];
+                            f += *(ptr_A++) * temp[k];
                         C[i + I][j + J] += f;
                     }
                 }
@@ -98,6 +105,7 @@ void block_copy
     register int I, J, K, i, j, k;
     register int blk_size = BLK_SIZE;
     register double f;
+    register double *ptr_A;
     double temp[blk_size];
     double tmpA[blk_size][blk_size], tmpB[blk_size][blk_size];
 
@@ -120,10 +128,11 @@ void block_copy
                     for (k = 0; k < blk_size; k++)
                         temp[k] = tmpB[k][j];
 
+                    ptr_A = &tmpA[0][0];
                     for (i = 0; i < blk_size; i++) {
                         f = 0.0;
                         for (k = 0; k < blk_size; k++)
-                            f += tmpA[i][k] * temp[k];
+                            f += *(ptr_A++) * temp[k];
                         C[i + I][j + J] += f;
                     }
                 }

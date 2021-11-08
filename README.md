@@ -32,176 +32,176 @@ make run-perf   # compile the code and measure performance using perf
 ## Result
 ### Acer Aspire A315-51 V1.08 (2018 laptop)
 ```sh
-loop_ijk: 11.70 sec
-loop_reorder: 9.59 sec
-matrix_col: 5.51 sec
-block: 6.58 sec
-block_copy: 5.62 sec
+loop_ijk: 11.92 sec
+loop_reorder: 9.73 sec
+matrix_col: 5.54 sec
+block: 5.29 sec
+block_copy: 5.12 sec
 ```
 ```
+sudo perf stat -d -d -d ./mm -1
 ------------------------------
-loop_ijk: 11.56 sec
+loop_ijk: 11.90 sec
 
  Performance counter stats for './mm -1':
 
-         11,590.61 msec task-clock                #    1.000 CPUs utilized          
-                34      context-switches          #    0.003 K/sec                  
-                 4      cpu-migrations            #    0.000 K/sec                  
-               976      page-faults               #    0.084 K/sec                  
-    31,152,716,414      cycles                    #    2.688 GHz                      (30.74%)
-    77,755,770,065      instructions              #    2.50  insn per cycle           (38.44%)
-     3,390,837,874      branches                  #  292.550 M/sec                    (38.44%)
-         2,401,946      branch-misses             #    0.07% of all branches          (38.44%)
-    16,917,136,204      L1-dcache-loads           # 1459.555 M/sec                    (38.45%)
-     3,804,252,039      L1-dcache-load-misses     #   22.49% of all L1-dcache accesses  (38.48%)
-       439,970,634      LLC-loads                 #   37.959 M/sec                    (30.78%)
-       211,767,259      LLC-load-misses           #   48.13% of all LL-cache accesses  (30.78%)
+         11,923.03 msec task-clock                #    0.998 CPUs utilized          
+               459      context-switches          #    0.038 K/sec                  
+                53      cpu-migrations            #    0.004 K/sec                  
+               465      page-faults               #    0.039 K/sec                  
+    32,033,713,210      cycles                    #    2.687 GHz                      (30.75%)
+    77,846,561,112      instructions              #    2.43  insn per cycle           (38.49%)
+     3,392,703,830      branches                  #  284.550 M/sec                    (38.53%)
+         2,593,415      branch-misses             #    0.08% of all branches          (38.53%)
+    16,898,083,719      L1-dcache-loads           # 1417.264 M/sec                    (38.56%)
+     3,798,727,752      L1-dcache-load-misses     #   22.48% of all L1-dcache accesses  (38.58%)
+       454,994,275      LLC-loads                 #   38.161 M/sec                    (30.77%)
+       213,338,077      LLC-load-misses           #   46.89% of all LL-cache accesses  (30.74%)
    <not supported>      L1-icache-loads                                             
-         1,840,894      L1-icache-load-misses                                         (30.78%)
-    16,920,052,072      dTLB-loads                # 1459.807 M/sec                    (30.78%)
-             3,749      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.78%)
-            11,377      iTLB-loads                #    0.982 K/sec                    (30.78%)
-             4,065      iTLB-load-misses          #   35.73% of all iTLB cache accesses  (30.77%)
+         4,334,258      L1-icache-load-misses                                         (30.70%)
+    16,921,322,113      dTLB-loads                # 1419.213 M/sec                    (30.67%)
+            27,709      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.70%)
+            68,764      iTLB-loads                #    0.006 M/sec                    (30.74%)
+             8,081      iTLB-load-misses          #   11.75% of all iTLB cache accesses  (30.74%)
    <not supported>      L1-dcache-prefetches                                        
    <not supported>      L1-dcache-prefetch-misses                                   
 
-      11.592541936 seconds time elapsed
+      11.945033578 seconds time elapsed
 
-      11.579212000 seconds user
-       0.011999000 seconds sys
+      11.883791000 seconds user
+       0.039945000 seconds sys
 
 
 sudo perf stat -d -d -d ./mm -2
 ------------------------------
-loop_reorder: 9.56 sec
+loop_reorder: 9.73 sec
 
  Performance counter stats for './mm -2':
 
-          9,585.78 msec task-clock                #    1.000 CPUs utilized          
-                25      context-switches          #    0.003 K/sec                  
-                 8      cpu-migrations            #    0.001 K/sec                  
-               463      page-faults               #    0.048 K/sec                  
-    25,782,974,839      cycles                    #    2.690 GHz                      (30.71%)
-   104,880,391,514      instructions              #    4.07  insn per cycle           (38.43%)
-     3,391,286,923      branches                  #  353.783 M/sec                    (38.47%)
-         2,370,004      branch-misses             #    0.07% of all branches          (38.52%)
-    20,287,956,825      L1-dcache-loads           # 2116.465 M/sec                    (38.56%)
-       433,292,348      L1-dcache-load-misses     #    2.14% of all L1-dcache accesses  (38.58%)
-           631,080      LLC-loads                 #    0.066 M/sec                    (30.82%)
-           108,145      LLC-load-misses           #   17.14% of all LL-cache accesses  (30.78%)
+          9,753.71 msec task-clock                #    0.998 CPUs utilized          
+               389      context-switches          #    0.040 K/sec                  
+                35      cpu-migrations            #    0.004 K/sec                  
+               974      page-faults               #    0.100 K/sec                  
+    26,223,443,672      cycles                    #    2.689 GHz                      (30.70%)
+   104,743,102,783      instructions              #    3.99  insn per cycle           (38.40%)
+     3,392,116,354      branches                  #  347.777 M/sec                    (38.41%)
+         2,599,338      branch-misses             #    0.08% of all branches          (38.45%)
+    20,283,437,097      L1-dcache-loads           # 2079.562 M/sec                    (38.49%)
+       441,984,607      L1-dcache-load-misses     #    2.18% of all L1-dcache accesses  (38.48%)
+         1,019,639      LLC-loads                 #    0.105 M/sec                    (30.83%)
+           286,433      LLC-load-misses           #   28.09% of all LL-cache accesses  (30.82%)
    <not supported>      L1-icache-loads                                             
-         1,063,090      L1-icache-load-misses                                         (30.73%)
-    20,299,282,092      dTLB-loads                # 2117.646 M/sec                    (30.71%)
-             2,575      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.71%)
-             9,551      iTLB-loads                #    0.996 K/sec                    (30.71%)
-             3,598      iTLB-load-misses          #   37.67% of all iTLB cache accesses  (30.71%)
+         3,884,347      L1-icache-load-misses                                         (30.82%)
+    20,337,151,088      dTLB-loads                # 2085.069 M/sec                    (30.82%)
+            26,781      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.76%)
+            67,346      iTLB-loads                #    0.007 M/sec                    (30.73%)
+             9,524      iTLB-load-misses          #   14.14% of all iTLB cache accesses  (30.69%)
    <not supported>      L1-dcache-prefetches                                        
    <not supported>      L1-dcache-prefetch-misses                                   
 
-       9.587286183 seconds time elapsed
+       9.771906008 seconds time elapsed
 
-       9.586373000 seconds user
-       0.000000000 seconds sys
+       9.730777000 seconds user
+       0.023967000 seconds sys
 
 
 sudo perf stat -d -d -d ./mm -3
 ------------------------------
-matrix_col: 5.49 sec
+matrix_col: 5.61 sec
 
  Performance counter stats for './mm -3':
 
-          5,513.95 msec task-clock                #    1.000 CPUs utilized          
-                20      context-switches          #    0.004 K/sec                  
-                 4      cpu-migrations            #    0.001 K/sec                  
-               466      page-faults               #    0.085 K/sec                  
-    14,828,139,094      cycles                    #    2.689 GHz                      (30.80%)
-    60,973,775,765      instructions              #    4.11  insn per cycle           (38.49%)
-     3,391,267,846      branches                  #  615.035 M/sec                    (38.49%)
-         2,334,215      branch-misses             #    0.07% of all branches          (38.49%)
-    16,878,823,576      L1-dcache-loads           # 3061.115 M/sec                    (38.49%)
-       433,309,958      L1-dcache-load-misses     #    2.57% of all L1-dcache accesses  (38.44%)
-         3,365,777      LLC-loads                 #    0.610 M/sec                    (30.76%)
-         2,152,179      LLC-load-misses           #   63.94% of all LL-cache accesses  (30.75%)
+          5,631.79 msec task-clock                #    0.998 CPUs utilized          
+               316      context-switches          #    0.056 K/sec                  
+                36      cpu-migrations            #    0.006 K/sec                  
+               976      page-faults               #    0.173 K/sec                  
+    15,138,716,399      cycles                    #    2.688 GHz                      (30.74%)
+    60,946,283,267      instructions              #    4.03  insn per cycle           (38.47%)
+     3,391,915,325      branches                  #  602.280 M/sec                    (38.54%)
+         2,492,708      branch-misses             #    0.07% of all branches          (38.61%)
+    16,869,795,946      L1-dcache-loads           # 2995.457 M/sec                    (38.68%)
+       438,578,188      L1-dcache-load-misses     #    2.60% of all L1-dcache accesses  (38.56%)
+         3,655,927      LLC-loads                 #    0.649 M/sec                    (30.77%)
+         2,366,685      LLC-load-misses           #   64.74% of all LL-cache accesses  (30.70%)
    <not supported>      L1-icache-loads                                             
-           548,083      L1-icache-load-misses                                         (30.75%)
-    16,960,694,896      dTLB-loads                # 3075.963 M/sec                    (30.75%)
-             2,318      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.75%)
-             3,567      iTLB-loads                #    0.647 K/sec                    (30.75%)
-             1,856      iTLB-load-misses          #   52.03% of all iTLB cache accesses  (30.75%)
+         1,692,864      L1-icache-load-misses                                         (30.69%)
+    16,998,850,783      dTLB-loads                # 3018.372 M/sec                    (30.69%)
+            28,810      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.69%)
+            22,587      iTLB-loads                #    0.004 M/sec                    (30.69%)
+             7,046      iTLB-load-misses          #   31.19% of all iTLB cache accesses  (30.63%)
    <not supported>      L1-dcache-prefetches                                        
    <not supported>      L1-dcache-prefetch-misses                                   
 
-       5.515083820 seconds time elapsed
+       5.643440787 seconds time elapsed
 
-       5.506528000 seconds user
-       0.007997000 seconds sys
+       5.624506000 seconds user
+       0.007983000 seconds sys
 
 
 sudo perf stat -d -d -d ./mm -4
 ------------------------------
-block: 6.54 sec
+block: 5.35 sec
 
  Performance counter stats for './mm -4':
 
-          6,569.65 msec task-clock                #    1.000 CPUs utilized          
-                17      context-switches          #    0.003 K/sec                  
-                 3      cpu-migrations            #    0.000 K/sec                  
-               464      page-faults               #    0.071 K/sec                  
-    17,666,974,371      cycles                    #    2.689 GHz                      (30.69%)
-    71,621,014,817      instructions              #    4.05  insn per cycle           (38.42%)
-     3,426,262,519      branches                  #  521.529 M/sec                    (38.48%)
-         9,224,418      branch-misses             #    0.27% of all branches          (38.54%)
-    13,608,666,014      L1-dcache-loads           # 2071.444 M/sec                    (38.60%)
-       470,070,921      L1-dcache-load-misses     #    3.45% of all L1-dcache accesses  (38.63%)
-        29,286,930      LLC-loads                 #    4.458 M/sec                    (30.84%)
-         1,785,194      LLC-load-misses           #    6.10% of all LL-cache accesses  (30.77%)
+          5,374.38 msec task-clock                #    0.998 CPUs utilized          
+               303      context-switches          #    0.056 K/sec                  
+                36      cpu-migrations            #    0.007 K/sec                  
+               463      page-faults               #    0.086 K/sec                  
+    14,446,391,591      cycles                    #    2.688 GHz                      (30.78%)
+    48,102,503,230      instructions              #    3.33  insn per cycle           (38.51%)
+     3,435,783,743      branches                  #  639.289 M/sec                    (38.58%)
+        11,555,171      branch-misses             #    0.34% of all branches          (38.66%)
+    10,254,443,604      L1-dcache-loads           # 1908.023 M/sec                    (38.64%)
+       481,851,131      L1-dcache-load-misses     #    4.70% of all L1-dcache accesses  (38.54%)
+        38,560,493      LLC-loads                 #    7.175 M/sec                    (30.82%)
+         2,289,631      LLC-load-misses           #    5.94% of all LL-cache accesses  (30.74%)
    <not supported>      L1-icache-loads                                             
-           740,213      L1-icache-load-misses                                         (30.71%)
-    13,551,506,696      dTLB-loads                # 2062.744 M/sec                    (30.68%)
-             4,862      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.68%)
-             5,511      iTLB-loads                #    0.839 K/sec                    (30.68%)
-             2,907      iTLB-load-misses          #   52.75% of all iTLB cache accesses  (30.68%)
+         2,329,454      L1-icache-load-misses                                         (30.69%)
+    10,218,048,525      dTLB-loads                # 1901.251 M/sec                    (30.67%)
+            25,970      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.60%)
+            31,810      iTLB-loads                #    0.006 M/sec                    (30.60%)
+             5,897      iTLB-load-misses          #   18.54% of all iTLB cache accesses  (30.68%)
    <not supported>      L1-dcache-prefetches                                        
    <not supported>      L1-dcache-prefetch-misses                                   
 
-       6.570854326 seconds time elapsed
+       5.386557574 seconds time elapsed
 
-       6.570250000 seconds user
-       0.000000000 seconds sys
+       5.351435000 seconds user
+       0.023961000 seconds sys
 
 
 sudo perf stat -d -d -d ./mm -5
 ------------------------------
-block_copy: 5.60 sec
+block_copy: 5.16 sec
 
  Performance counter stats for './mm -5':
 
-          5,622.22 msec task-clock                #    1.000 CPUs utilized          
-                23      context-switches          #    0.004 K/sec                  
-                 8      cpu-migrations            #    0.001 K/sec                  
-             1,524      page-faults               #    0.271 K/sec                  
-    15,122,357,041      cycles                    #    2.690 GHz                      (30.74%)
-    61,614,557,589      instructions              #    4.07  insn per cycle           (38.49%)
-     3,433,388,386      branches                  #  610.682 M/sec                    (38.54%)
-         9,174,149      branch-misses             #    0.27% of all branches          (38.54%)
-    20,405,670,462      L1-dcache-loads           # 3629.468 M/sec                    (38.54%)
-       445,925,952      L1-dcache-load-misses     #    2.19% of all L1-dcache accesses  (38.53%)
-        19,924,235      LLC-loads                 #    3.544 M/sec                    (30.73%)
-         1,069,603      LLC-load-misses           #    5.37% of all LL-cache accesses  (30.73%)
+          5,189.10 msec task-clock                #    0.998 CPUs utilized          
+               287      context-switches          #    0.055 K/sec                  
+                41      cpu-migrations            #    0.008 K/sec                  
+               816      page-faults               #    0.157 K/sec                  
+    13,951,821,534      cycles                    #    2.689 GHz                      (30.72%)
+    44,787,935,664      instructions              #    3.21  insn per cycle           (38.39%)
+     3,439,329,851      branches                  #  662.799 M/sec                    (38.39%)
+        11,542,510      branch-misses             #    0.34% of all branches          (38.39%)
+    13,681,270,173      L1-dcache-loads           # 2636.539 M/sec                    (38.42%)
+       450,778,742      L1-dcache-load-misses     #    3.29% of all L1-dcache accesses  (38.44%)
+        23,560,106      LLC-loads                 #    4.540 M/sec                    (30.76%)
+         1,240,657      LLC-load-misses           #    5.27% of all LL-cache accesses  (30.77%)
    <not supported>      L1-icache-loads                                             
-           615,868      L1-icache-load-misses                                         (30.73%)
-    20,440,169,432      dTLB-loads                # 3635.604 M/sec                    (30.73%)
-            18,519      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.73%)
-             7,552      iTLB-loads                #    0.001 M/sec                    (30.73%)
-             2,456      iTLB-load-misses          #   32.52% of all iTLB cache accesses  (30.73%)
+         1,638,579      L1-icache-load-misses                                         (30.84%)
+    13,749,814,281      dTLB-loads                # 2649.748 M/sec                    (30.84%)
+            55,038      dTLB-load-misses          #    0.00% of all dTLB cache accesses  (30.85%)
+            28,689      iTLB-loads                #    0.006 M/sec                    (30.84%)
+             8,361      iTLB-load-misses          #   29.14% of all iTLB cache accesses  (30.75%)
    <not supported>      L1-dcache-prefetches                                        
    <not supported>      L1-dcache-prefetch-misses                                   
 
-       5.623555081 seconds time elapsed
+       5.201901057 seconds time elapsed
 
-       5.618834000 seconds user
-       0.003999000 seconds sys
-
+       5.182092000 seconds user
+       0.007984000 seconds sys
 
 ```
 
@@ -224,5 +224,5 @@ block_copy: 33.24 sec
 ```
 
 ## Todo List
-- [ ] improve block algorithm
-- [ ] find better submatrix size for every machine
+- [X] improve block algorithm
+- [ ] find better submatrix size for each machine

@@ -53,15 +53,15 @@ void matrix_col
  *   n        = size of original matrix,
  *   BLK_SIZE = size of submatrix,
  *   BLK_N    = n / BLK_SIZE,
- *   M(I, J)  = submatrix, upper left element is M[I*BLK_SIZE][J*BLK_SIZE]
- *            = { M[i][j] | I*BLK_SIZE <= i < (I+1)*BLK_SIZE,
- *                          J*BLK_SIZE <= j < (J+1)*BLK_SIZE }
+ *   M(I, J)  = submatrix, upper left element is M[I][J]
+ *            = { M[i][j] | I*BLK_SIZE <= i < I+BLK_SIZE,
+ *                          J*BLK_SIZE <= j < J+BLK_SIZE }
  *
  * block algorithm:
  *   C = {000...0}
- *   for (0 <= I < BLK_N)
- *       for (0 <= J < BLK_N)
- *           for (0 <= K < BLK_N)
+ *   for (0 <= I < BLK_SIZE)
+ *       for (0 <= J < BLK_SIZE)
+ *           for (0 <= K < BLK_SIZE)
  *               C(I, J) += A(I, K) X B(K, J)
  *
  **********************************************************************************/

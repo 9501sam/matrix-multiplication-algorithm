@@ -207,20 +207,20 @@ block_copy: 5.16 sec
 
 ### Asus Eee PC 1018P (very old laptop)
 ```sh
-loop_ijk: 259.06 sec
-loop_reorder: 195.04 sec
-matrix_col: 111.18 sec
-block: 149.44 sec
-block_copy: 113.29 sec
+loop_ijk: 192.83 sec
+loop_reorder: 176.40 sec
+matrix_col: 98.96 sec
+block: 63.23 sec
+block_copy: 61.58 sec
 ```
 
 ### Raspberry Pi 4 Model B with 4G RAM
 ```sh
-loop_ijk: 93.10 sec
-loop_reorder: 42.63 sec
-matrix_col: 31.45 sec
-block: 50.21 sec
-block_copy: 33.24 sec
+loop_ijk: 63.00 sec
+loop_reorder: 25.68 sec
+matrix_col: 15.34 sec
+block: 13.00 sec
+block_copy: 11.34 sec
 ```
 
 ## Todo List

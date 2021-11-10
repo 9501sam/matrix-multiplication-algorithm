@@ -2,8 +2,8 @@
 
 int BLK_SIZE = 300;
 
-void loop_ijk
-(int n, double A[n][n], double B[n][n], double C[n][n])
+void
+loop_ijk (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     register int i, j, k;
     register double f;
@@ -16,8 +16,8 @@ void loop_ijk
         }
 }
 
-void loop_reorder
-(int n, double A[n][n], double B[n][n], double C[n][n])
+void
+loop_reorder (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     register int i, j, k;
     register double f;
@@ -29,8 +29,8 @@ void loop_reorder
         }
 }
 
-void matrix_col
-(int n, double A[n][n], double B[n][n], double C[n][n])
+void
+matrix_col (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     register int i, j, k;
     register double f;
@@ -66,8 +66,8 @@ void matrix_col
  *
  **********************************************************************************/
 
-void block
-(int n, double A[n][n], double B[n][n], double C[n][n])
+void
+block (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     register int I, J, K, i, j, k;
     register int blk_size = BLK_SIZE;
@@ -99,8 +99,8 @@ void block
             }
 }
 
-void block_copy
-(int n, double A[n][n], double B[n][n], double C[n][n])
+void
+block_copy (int n, double A[n][n], double B[n][n], double C[n][n])
 {
     register int I, J, K, i, j, k;
     register int blk_size = BLK_SIZE;
